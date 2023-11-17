@@ -121,6 +121,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  equatable:
+    dependency: transitive
+    description:
+      name: equatable
+      sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.5"
   fake_async:
     dependency: transitive
     description:
@@ -325,6 +333,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  slider_view:
+    dependency: "direct main"
+    description:
+      name: slider_view
+      sha256: f177e249cbe463da44708a283af0033f9f2993f8e78d89e3af0644a95d4773d5
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   source_span:
     dependency: transitive
     description:

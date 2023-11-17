@@ -4,9 +4,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:music_player/constants/appcolor.dart';
+import 'package:music_player/screen/detailscreen.dart';
 
 class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({super.key});
+   DashboardScreen({super.key});
 
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
@@ -213,7 +214,13 @@ class _DashboardScreenState extends State<DashboardScreen>
                             ListView.builder(
                               itemCount: audio==null?0:audio.length,
                               itemBuilder: (_, i){
-                              return Container(
+                              return 
+                              GestureDetector(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context)=>DetailAudioScreen(audiodata: audio, index: i,)));
+                                },
+                                child:  Container(
                                 margin: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
                                 child: Container(
                                  // color: AppColorDesign.bgDark,
@@ -273,7 +280,9 @@ class _DashboardScreenState extends State<DashboardScreen>
                                   ),
                                 ),
                                 
+                              ),
                               );
+                             
                             }),
                     
                           Material(
