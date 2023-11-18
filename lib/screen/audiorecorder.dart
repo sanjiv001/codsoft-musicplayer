@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class AudioRecorderFile extends StatefulWidget {
   final AudioPlayer myaudioplayer;
   final String audiopath;
+  
   const AudioRecorderFile(
       {super.key, required this.myaudioplayer, required this.audiopath});
 
@@ -14,12 +15,14 @@ class AudioRecorderFile extends StatefulWidget {
 }
 
 class _AudioRecorderFileState extends State<AudioRecorderFile> {
+  final player = AudioPlayer();
   Duration _duration = new Duration();
   Duration _position = new Duration();
-  
   bool isPlaying = false;
   bool isPaused = false;
-  // bool isLoop = false;
+ final url  =
+      "https://st.bslmeiyu.com/uploads/%e6%9c%97%e6%96%87%e5%9b%bd%e9%99%85SBS%e7%b3%bb%e5%88%97/%e6%9c%97%e6%96%87%e5%9b%bd%e9%99%85%e8%8b%b1%e8%af%ad%e6%95%99%e7%a8%8b%e7%ac%ac1%e5%86%8c_V2/%e5%ad%a6%e7%94%9f%e7%94%a8%e4%b9%a6/P149_Chapter%2016_Vocabulary%20Preview.mp3";
+
   bool isRepeat = false;
   List<IconData> _icons = [
     Icons.play_circle_fill,
@@ -51,6 +54,7 @@ class _AudioRecorderFileState extends State<AudioRecorderFile> {
 // btn init
   void initState() {
     super.initState();
+  
     this.widget.myaudioplayer.onDurationChanged.listen((a) {
       setState(() {
         _duration = a;
@@ -61,8 +65,8 @@ class _AudioRecorderFileState extends State<AudioRecorderFile> {
         _position = b;
       });
     });
-
-    this.widget.myaudioplayer.setSourceUrl(this.widget.audiopath);
+  
+    this.widget.myaudioplayer.setSourceUrl(url);
     this.widget.myaudioplayer.onPlayerComplete.listen((event) {
       setState(() {
         _position = Duration(seconds: 0);
@@ -75,37 +79,34 @@ class _AudioRecorderFileState extends State<AudioRecorderFile> {
       });
     });
   }
+ 
 
 
-  final player = AudioPlayer();
-  final String path =
-      "https://st.bslmeiyu.com/uploads/%e6%9c%97%e6%96%87%e5%9b%bd%e9%99%85SBS%e7%b3%bb%e5%88%97/%e6%9c%97%e6%96%87%e5%9b%bd%e9%99%85%e8%8b%b1%e8%af%ad%e6%95%99%e7%a8%8b%e7%ac%ac1%e5%86%8c_V2/%e5%ad%a6%e7%94%9f%e7%94%a8%e4%b9%a6/P149_Chapter%2016_Vocabulary%20Preview.mp3";
-
+ 
   Future <void> playAudioFromUrl(String url) async {
     await player.play(UrlSource(url));
   }
 
-
   Widget btnstrt() {
     return IconButton(
         padding: EdgeInsets.only(bottom: 10),
-        onPressed: () {
-          if (isPlaying == false) {
-             playAudioFromUrl("path");
-            // this.widget.myaudioplayer.play(path);
-            // this.widget.myaudioplayer.play(this.widget.audiopath);
-            print("stop");
+        onPressed: ()  async {
+         
+           if (isPlaying == false) {
+            
+            playAudioFromUrl(url);
+            // print("stop");
             setState(() {
               isPlaying = true;
             });
           } else if (isPlaying == true) {
             this.widget.myaudioplayer.pause();
-            print("start");
+           // print("start");
             setState(() {
               isPlaying = false;
             });
           }
-        },
+         },
         icon: isPlaying == false
             ? Icon(
                 _icons[0],
@@ -121,8 +122,8 @@ class _AudioRecorderFileState extends State<AudioRecorderFile> {
 
   Widget Backwardbtn() {
     return IconButton(
-      icon: ImageIcon(
-        AssetImage('assets/images/backward.png'),
+      icon: const ImageIcon(
+        AssetImage('assets/images/backword.png'),
         size: 15,
         color: Colors.black,
       ),
@@ -153,7 +154,7 @@ class _AudioRecorderFileState extends State<AudioRecorderFile> {
         color: Color.fromARGB(255, 0, 0, 0),
       ),
       onPressed: () {
-        this.widget.myaudioplayer!.setPlaybackRate(0.5);
+        this.widget.myaudioplayer.setPlaybackRate(0.5);
       },
     );
   }
@@ -195,6 +196,9 @@ class _AudioRecorderFileState extends State<AudioRecorderFile> {
       ),
     );
   }
+
+
+
 
   Widget build(BuildContext context) {
     return Column(

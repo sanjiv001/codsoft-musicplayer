@@ -54,7 +54,7 @@ void initState() {
               left: 0,
               right: 0,
               top: 220,
-              height: 280,
+              height: 580,
               child: Container(
                 //
                 decoration: BoxDecoration(
@@ -66,6 +66,8 @@ void initState() {
                     SizedBox(
                       height: 20,
                     ),
+                   
+                    
                     Text(
                       this.widget.audiodata[this.widget.index]["title"],
                       style:
@@ -77,21 +79,21 @@ void initState() {
                           fontSize: 20, fontWeight: FontWeight.normal),
                     ),
                     AudioRecorderFile(myaudioplayer:myaudioplayer, audiopath : this.widget.audiodata[this.widget.index]["audio"]),
+                  
+                   Container(
+                      decoration: BoxDecoration(
+                        color:  Colors.blue,
+                        image: DecorationImage(image: AssetImage(this.widget.audiodata[this.widget.index]["img"]),
+                        fit: BoxFit.cover)
+                          
+                        )
+                      ),
                   ],
+
+                  
                 ),
               )),
-          // Positioned(
-          //     top: 200,
-          //     left: 200,
-          //     right: 200,
-          //    height: 200,
-          //     child: Container(
-
-          //       decoration: BoxDecoration(
-          //         borderRadius: BorderRadius.circular(20),
-          //         border: Border.all(color: Colors.white, width: 2)
-          //       ),
-          //     )),
+       
         ],
       ),
     );
